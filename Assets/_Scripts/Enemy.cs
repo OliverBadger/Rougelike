@@ -66,20 +66,20 @@ public class Enemy : MonoBehaviour
     private void ShootAtPlayer()
     {
         // Spawn the projectile
-        GameObject projectile = Instantiate(projectile, transform.position, Quaternion.identity);
+        GameObject projectilePrefab = Instantiate(projectile, transform.position, Quaternion.identity);
 
         // Calculate direction toward the player
         Vector2 direction = (player.transform.position - transform.position).normalized;
 
         // Set projectile velocity
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = projectilePrefab.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.velocity = direction * projectileSpeed;
         }
 
         // Assign damage to the projectile
-        TestProjectile projectileScript = projectile.GetComponent<TestProjectile>();
+        TestProjectile projectileScript = projectilePrefab.GetComponent<TestProjectile>();
         if (projectileScript != null)
         {
             projectileScript.damage = projectileDamage;

@@ -7,7 +7,8 @@ public class NextLevelScript : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            SceneManager.LoadScene(3);
+            // Goes to boss battle
+            SceneManager.LoadScene(6);
         }
     }
 }

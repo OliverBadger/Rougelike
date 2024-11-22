@@ -35,8 +35,10 @@ public class StatsHandler : MonoBehaviour
     //public int enemySpeed;
 
     private void Awake(){
-        if (Instance == null)
+        if (Instance == null) { 
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
             Destroy(gameObject);
 
@@ -60,6 +62,5 @@ public class StatsHandler : MonoBehaviour
             slider.value = currentHealth;
             currentHealth -= damage;
         }
-
     }
 }

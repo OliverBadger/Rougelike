@@ -21,11 +21,9 @@ public class StatsHandler : MonoBehaviour
     [Header("Player Stats")]
     public int maxHealth;
     public int currentHealth;
-    public Slider slider;
     //public int experience;
     //public int level;
     public int totalCoins;
-    public TextMeshProUGUI coinDisplay;
     //public int totalEnergy;
     //public int currentEnergy;
 
@@ -34,10 +32,16 @@ public class StatsHandler : MonoBehaviour
     //public int enemyCurrentHealth;
     //public int enemySpeed;
 
+    [Header("UI Settings")]
+    public Canvas canvas;
+    public Slider slider;
+    public TextMeshProUGUI coinDisplay;
+
     private void Awake(){
         if (Instance == null) { 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(canvas);
         }
         else
             Destroy(gameObject);

@@ -1,54 +1,68 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Enemy Settings")]
     private int health;
     public int maxHealth;
     public float chaseSpeed = 3.0f; 
     public float attackRange = 1.5f;
     public float detectionRange = 5.0f; // Range within which the enemy detects the player
     public float attackCooldown = 2.0f; // Time between attacks
-
-    [Header("Projectile Settings")]
-    public GameObject projectile; // The projectile prefab to spawn
-    public float shootInterval = 2.0f; // Time between shots
-    public float projectileSpeed = 5.0f; // Speed of the projectile
-    public int projectileDamage = 10; // Damage dealt by the projectile
-    private float shootTimer; // Timer to control shooting intervals
-
-
+    private float tempAC; // Time between attacks
+    
+    
     private Animator animator;
     public Slider slider;
     private bool isAttacking = false; // Flag to manage attack state
     private Rigidbody2D rb;
     private GameObject player;
+    private Shooting shoot;
 
     void Start()
     {
         health = maxHealth;
         slider.value = health;
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+            Debug.Log("Player Not Found");
+        else
+            Debug.Log("This is the object found" + player + player.name);
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        shoot = GetComponent<Shooting>();
 
-        player = GameObject.FindGameObjectWithTag("Player");
-        // Initialise the timer
-        shootTimer = shootInterval;
+        tempAC = attackCooldown;
+
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (player == null) return; // Stop if no player is found
+
+        Debug.Log("Slider is: " + slider);
+        Debug.Log("Animator is: " + animator);
+        Debug.Log("RigidBody is: " + rb);
+        Debug.Log("Player is: " + player);
+
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
+        attackCooldown -= Time.deltaTime;
+        if (attackCooldown < 0)
+        {
+            // Reset timer
+            attackCooldown = tempAC;
+
+            Attack();
+        }
 
         if (distanceToPlayer <= attackRange)
         {
             // Stop chasing and attack
             if (!isAttacking)
             {
-                Attack();
+                //Attack();
             }
         }
         else if (distanceToPlayer <= detectionRange)
@@ -63,34 +77,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void ShootAtPlayer()
-    {
-        // Spawn the projectile
-        GameObject projectilePrefab = Instantiate(projectile, transform.position, Quaternion.identity);
-
-        // Calculate direction toward the player
-        Vector2 direction = (player.transform.position - transform.position).normalized;
-
-        // Set projectile velocity
-        Rigidbody2D rb = projectilePrefab.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.velocity = direction * projectileSpeed;
-        }
-
-        // Assign damage to the projectile
-        TestProjectile projectileScript = projectilePrefab.GetComponent<TestProjectile>();
-        if (projectileScript != null)
-        {
-            projectileScript.damage = projectileDamage;
-        }
-    }
-
-
     private void ChasePlayer()
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
-        rb.velocity = direction * chaseSpeed;
+        rb.linearVelocity = direction * chaseSpeed;
 
         // Update animation (e.g., walking animation)
         if (animator != null)
@@ -101,7 +91,7 @@ public class Enemy : MonoBehaviour
 
     private void StopChasing()
     {
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
         // Update animation (e.g., idle animation)
         if (animator != null)
@@ -112,6 +102,7 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
+        shoot.Shoot(player.transform.position, gameObject.transform.position);
         isAttacking = true;
 
         // Play attack animation
@@ -121,7 +112,7 @@ public class Enemy : MonoBehaviour
         }
 
         // Optionally deal damage to the player
-        DealDamageToPlayer();
+        //DealDamageToPlayer();
 
         isAttacking = false;
     }

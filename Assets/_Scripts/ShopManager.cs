@@ -17,24 +17,26 @@ public class ShopManager : MonoBehaviour
     {
         foreach (ShopItem shopsItem in allItems) 
         {
-
+            //Random Selection for shop items
         }
-        disedItems = displayedItems;
+        
         for (int i = 0; i <= 3; i++)
         {
-            DisplayItem(,i);
+            //Displaying eachof the items in the spawnpoints here
+            DisplayItem(i);
         }
     }
 
     private void DisplayItem(int index)
     {
         // Instantiate the shop item UI
-        GameObject itemUI = Instantiate(shopItemPrefab, shopItemsParent);
-        itemUI.GetComponent<ShopItemUI>().Setup(item, this, index);
+        //GameObject itemUI = Instantiate(shopItemPrefab, shopItemsParent);
+        //itemUI.GetComponent<ShopItemUI>().Setup(item, this, index);
     }
 
     public void PurchaseItem(int index)
     {
+        //Called only when triggered
         ShopItem item = displayedItems[index];
 
         if (StatsHandler.Instance.totalCoins >= item.cost)

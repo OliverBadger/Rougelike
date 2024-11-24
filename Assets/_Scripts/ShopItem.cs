@@ -19,6 +19,7 @@ public class ShopItem : ScriptableObject
     public int bonusDamage;
     public int bonusHealth;
     public int bonusSpeed;
+    public string teeth;
 
 
     //private GameItem GetRandomItem()

@@ -3,36 +3,30 @@ using UnityEngine;
 public class ShopManager : MonoBehaviour
 {
     public ShopItem[] allItems; // Drag all your ScriptableObjects here in the Inspector
-    public Transform shopItemsParent; // Parent object for shop item UI
-    public GameObject shopItemPrefab; // UI prefab for displaying items
+    public GameObject SpawnPoint1, SpawnPoint2, SpawnPoint3;
+
 
     private ShopItem[] displayedItems;
 
     private void Start()
     {
-        GenerateShopItems();
+        GenerateShop();
     }
 
-    public void GenerateShopItems()
+    private void GenerateShop()
     {
-        // Generate 3 random items
-        displayedItems = new ShopItem[3];
-
-        for (int i = 0; i < displayedItems.Length; i++)
+        foreach (ShopItem shopsItem in allItems) 
         {
-            displayedItems[i] = GetRandomItem();
-            DisplayItem(displayedItems[i], i);
+
+        }
+        disedItems = displayedItems;
+        for (int i = 0; i <= 3; i++)
+        {
+            DisplayItem(,i);
         }
     }
 
-    private ShopItem GetRandomItem()
-    {
-        // Weighted random generation by rarity
-        int randomIndex = Random.Range(0, allItems.Length);
-        return allItems[randomIndex];
-    }
-
-    private void DisplayItem(ShopItem item, int index)
+    private void DisplayItem(int index)
     {
         // Instantiate the shop item UI
         GameObject itemUI = Instantiate(shopItemPrefab, shopItemsParent);

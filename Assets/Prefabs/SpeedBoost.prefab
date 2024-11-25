@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8230153331902498412}
   - component: {fileID: 6449205874805764592}
   - component: {fileID: 913001097853877507}
-  - component: {fileID: 960249567711896382}
+  - component: {fileID: 2583194382964810501}
   m_Layer: 0
   m_Name: SpeedBoost
   m_TagString: Untagged
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.12, y: 0.13}
   m_EdgeRadius: 0
---- !u!114 &960249567711896382
+--- !u!114 &2583194382964810501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7077378960577688308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1edad244dd97e4fb5f621c1efd483e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f837355fc5f89d4b95e5e6f4eb343a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 6e3f1af9bdaa0ff4d808ccbf7c7396ee, type: 2}

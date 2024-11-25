@@ -1233,8 +1233,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 064ebfa1a86cbd8478237be5349739e4, type: 2}
   - {fileID: 11400000, guid: 6e3f1af9bdaa0ff4d808ccbf7c7396ee, type: 2}
   - {fileID: 11400000, guid: 75c58d6f43dbda34d88a048cb08248d9, type: 2}
-  shopItemsParent: {fileID: 0}
-  shopItemPrefab: {fileID: 7077378960577688308, guid: a7f7218fc0a68ae49b291a64ec3c6b1a, type: 3}
+  SpawnPoints:
+  - {fileID: 1198070333}
+  - {fileID: 1804855688}
+  - {fileID: 627232286}
 --- !u!4 &1558515780
 Transform:
   m_ObjectHideFlags: 0

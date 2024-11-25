@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: asdasd
   rarity: 2
-  prefab: {fileID: 2582121450049524112, guid: 6fd0d95332324e04f973a79264f9fedc, type: 3}
+  prefab: {fileID: 7077378960577688308, guid: a7f7218fc0a68ae49b291a64ec3c6b1a, type: 3}
   cost: 0
   bonusDamage: 0
   bonusHealth: 0

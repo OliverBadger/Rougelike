@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 
   rarity: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 7077378960577688308, guid: a7f7218fc0a68ae49b291a64ec3c6b1a, type: 3}
   cost: 0
   bonusDamage: 0
   bonusHealth: 0
   bonusSpeed: 0
-  itemIcon: {fileID: 0}
+  teeth: 

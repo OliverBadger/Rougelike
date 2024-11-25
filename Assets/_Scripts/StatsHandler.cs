@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,32 +6,29 @@ using UnityEngine.UI;
 public class StatsHandler : MonoBehaviour
 {
     public static StatsHandler Instance;
+    public event Action<int> OnSpeedChanged;
+
 
     [Header("Combat Stats")]
-    //public int damage;
-    //public float weaponRange;
-    //public float knockbackForce;
-    //public float knockbackTime;
-    //public float stunTime;
     public int projectileDamage;
     public int projectileVelocity;
 
     [Header("Movement Stats")]
-    public int speed;
+    private int _speed;
+    public int speed
+    {
+        get => _speed;
+        set 
+        {
+            _speed = value;
+            OnSpeedChanged?.Invoke(_speed);
+        } 
+    }
 
     [Header("Player Stats")]
     public int maxHealth;
     public int currentHealth;
-    //public int experience;
-    //public int level;
     public int totalCoins;
-    //public int totalEnergy;
-    //public int currentEnergy;
-
-    //[Header("Enemy Stats")]
-    //public int enemyMaxHealth;
-    //public int enemyCurrentHealth;
-    //public int enemySpeed;
 
     [Header("UI Settings")]
     public Canvas canvas;
@@ -45,6 +43,8 @@ public class StatsHandler : MonoBehaviour
         }
         else
             Destroy(gameObject);
+
+        speed = 5;
 
         currentHealth = maxHealth;
 
@@ -66,5 +66,10 @@ public class StatsHandler : MonoBehaviour
             slider.value = currentHealth;
             currentHealth -= damage;
         }
+    }
+
+    public void AddSpeed(int amount)
+    {
+        speed += amount;
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c8e5d5d13acb0478aa62c9b84a5752, type: 3}
   m_Name: SpeedBonus
   m_EditorClassIdentifier: 
-  itemName: Speed Boots
+  itemName: Speed Boost
   rarity: 0
   prefab: {fileID: 7077378960577688308, guid: a7f7218fc0a68ae49b291a64ec3c6b1a, type: 3}
   cost: 2

@@ -1,16 +1,28 @@
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class BoostScript : MonoBehaviour
 {
     public ShopItem item;
+    public ShopManager SM;
+
+    public void Start()
+    {
+        SM = FindFirstObjectByType<ShopManager>(); 
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            ApplyEffectsToPlayer();
-            Destroy(gameObject);
-        }
+        Debug.Log($"The Item Being Passed is {item.itemName}");
+        if (other.CompareTag("Player")) 
+            if(StatsHandler.Instance.totalCoins >= item.cost)
+            {
+                SM.PurchaseItem(item);
+                ApplyEffectsToPlayer();
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.Log("Not Enough Coins");
+            }
     }
 
     private void ApplyEffectsToPlayer()
@@ -22,5 +34,4 @@ public class BoostScript : MonoBehaviour
         
         Debug.Log($"Player picked up {item.itemName}!");
     }
-
 }

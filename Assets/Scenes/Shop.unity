@@ -1451,7 +1451,7 @@ MonoBehaviour:
   speed: 2
   maxHealth: 100
   currentHealth: 0
-  totalCoins: 0
+  totalCoins: 200
   canvas: {fileID: 1435877881}
   slider: {fileID: 1417096399}
   coinDisplay: {fileID: 1391790606}

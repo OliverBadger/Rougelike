@@ -5,5 +5,4 @@ public class StatsData : ScriptableObject
 {
     public int totalCoins;
     public int playerHealth;
-
 }

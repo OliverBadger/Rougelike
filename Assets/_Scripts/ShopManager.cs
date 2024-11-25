@@ -7,8 +7,6 @@ public class ShopManager : MonoBehaviour
 {
     public ShopItem[] allItems; // Drag all your ScriptableObjects here in the Inspector
     public GameObject[] SpawnPoints;
-
-
     private ShopItem[] displayedItems;
 
     private void Start()
@@ -20,7 +18,7 @@ public class ShopManager : MonoBehaviour
     {
         System.Random random = new Random();
         int randomNumber = random.Next(1, 6); // Generates a number between 1 (inclusive) and 6 (exclusive)
-        Console.WriteLine("Random number between 1 and 5: " + randomNumber);
+        Console.WriteLine($"Random number between 1 and 5: {randomNumber}");
 
         // Gets Spawn point position and puts it on item
         foreach (ShopItem shopsItem in allItems) 
@@ -44,26 +42,17 @@ public class ShopManager : MonoBehaviour
         //itemUI.GetComponent<ShopItemUI>().Setup(item, this, index);
     }
 
-    public void PurchaseItem(int index)
+    public void PurchaseItem(ShopItem item)
     {
-        //Called only when triggered
-        ShopItem item = displayedItems[index];
+        ////Called only when triggered
+        //ShopItem item = displayedItems[index];
 
-        if (StatsHandler.Instance.totalCoins >= item.cost)
-        {
-            StatsHandler.Instance.totalCoins -= item.cost;
+        StatsHandler.Instance.totalCoins -= item.cost;
 
-            // Apply the item's bonuses
-            StatsHandler.Instance.projectileDamage += item.bonusDamage;
-            StatsHandler.Instance.maxHealth += item.bonusHealth;
-            StatsHandler.Instance.currentHealth += item.bonusHealth;
-            StatsHandler.Instance.speed += item.bonusSpeed;
-
-            Debug.Log($"Purchased {item.itemName}");
-        }
-        else
-        {
-            Debug.Log("Not enough coins!");
-        }
+        // Apply the item's bonuses
+        StatsHandler.Instance.projectileDamage += item.bonusDamage;
+        StatsHandler.Instance.maxHealth += item.bonusHealth;
+        StatsHandler.Instance.currentHealth += item.bonusHealth;
+        StatsHandler.Instance.speed += item.bonusSpeed;
     }
 }

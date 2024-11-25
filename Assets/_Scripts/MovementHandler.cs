@@ -4,7 +4,8 @@ using UnityEngine;
 public class MovementHandler : MonoBehaviour
 {
     // Movement variables
-    private int moveSpeed;
+    [Header("Movement Variables")]
+    public int moveSpeed;
 
     // Components
     private Rigidbody2D rb;
@@ -21,9 +22,24 @@ public class MovementHandler : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        // Initial Speed
         moveSpeed = StatsHandler.Instance.speed;
+        Debug.Log(StatsHandler.Instance.speed);
+
+        // Subscribe to speed change event
+        StatsHandler.Instance.OnSpeedChanged += UpdateSpeed;
 
         rb.freezeRotation = true;
+    }
+
+    private void OnDestroy()
+    {
+        // Unsubscribe from the event to avoid memory leaks
+        if (StatsHandler.Instance != null)
+        {
+            StatsHandler.Instance.OnSpeedChanged -= UpdateSpeed;
+        }
+
     }
 
     void Update()
@@ -57,5 +73,9 @@ public class MovementHandler : MonoBehaviour
             float angle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg;
             //transform.rotation = Quaternion.Euler(0, 0, angle - 90); // Adjust the rotation as needed
         }
+    }
+    void UpdateSpeed(int amount)
+    {
+        moveSpeed += amount;
     }
 }
